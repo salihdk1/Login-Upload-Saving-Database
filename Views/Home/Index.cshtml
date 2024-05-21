@@ -1,0 +1,70 @@
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model IEnumerable<LDap.Models.Model>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Hakkımızda</a>
+                <a href="#">İletişim</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Hoş Geldiniz!</h1>
+
+        <div class="table-container">
+            <h2>Aylık Ek Ders Tablosu</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sayı</th>
+                        <th>Örgün Eğitim Saat</th>
+                        <th>Örgün Eğitim Tutar</th>
+                        <th>Gelir Toplamı</th>
+                        <th>Damga Vergisi</th>
+                        <th>Gelir Vergisi</th>
+                        <th>Gelir Vergisi İstisnası</th>
+                        <th>Damga Vergisi İstisnası</th>
+                        <th>Kesinti Toplamı</th>
+                        <th>Net Ödenecek Ücret</th>
+                        <th>Ay</th>
+                        <th>Yıl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SıraNo</td>
+                            <td>@item.ÖrgünEğitimSaat</td>
+                            <td>@item.ÖrgünEğitimTutar</td>
+                            <td>@item.GelirToplamı</td>
+                            <td>@item.DamgaVergisi</td>
+                            <td>@item.GelirVergisi</td>
+                            <td>@item.GelirVergisiİstisnası</td>
+                            <td>@item.DamgaVergisiİstisnası</td>
+                            <td>@item.KesintiToplamı</td>
+                            <td>@item.NetÖdenecekÜcret</td>
+                            <td>@item.Ay</td>
+                            <td>@item.Yıl</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

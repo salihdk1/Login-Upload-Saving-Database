@@ -1,0 +1,172 @@
+﻿@model LDap.Models.Model
+
+@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            bottom: 90%;
+            left: 20%;
+            width: calc(100% - 20%);
+            background-color: #00A5B5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+            .navbar img {
+                max-height: 40px;
+            }
+
+            .navbar p {
+                margin: 0;
+            }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 900;
+            width: 20%;
+            height: 100%;
+            background-color: #333;
+            padding-top: 50px;
+        }
+
+            .sidebar ul {
+                list-style-type: none;
+                padding: 20px;
+            }
+
+            .sidebar li {
+                margin-top: 20px;
+                padding: 8px 16px;
+                background-color: #333;
+            }
+
+                .sidebar li:hover {
+                    border-bottom: none;
+                    background-color: #495057;
+                }
+
+        .content {
+            margin-top: 10%;
+            margin-left: 20%;
+        }
+
+        h2.text-center {
+            text-align: center;
+        }
+
+        .baslik {
+            margin-left: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 20px;
+            color: #00A5B5;
+        }
+
+        li {
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload label {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .file-upload label:hover {
+                background-color: #0056b3;
+            }
+
+        .file-upload button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .file-upload button[type="submit"]:hover {
+                background-color: #218838;
+            }
+
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+            <li class="logout">
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="btn btn-link">Çıkış Yap</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="navbar">
+            <img src="view/bakircay-universitesi.png" alt="Navbar Image" />
+        </div>
+        <h2 class="text-center">Admin Dashboard</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="baslik">Öğretim Görevlisi İsim Listesi</h4>
+                <ul>
+                    <li>
+                        <span>user</span>
+                        <a>@User.Identity!.Name</a>
+                        <form asp-action="UploadFile" method="post" enctype="multipart/form-data" class="file-upload">
+                            <input type="file" name="fileUpload" class="form-control-file" id="fileUpload">
+                            <input type="hidden" name="userName" value="user" />
+                            <input type="hidden" name="isAdmin" value="false" />
+                            <label for="fileUpload">Dosya Seç</label>
+                            <button type="submit">Dosyayı Yükle</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
